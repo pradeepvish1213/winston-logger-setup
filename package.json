@@ -1,0 +1,26 @@
+{
+  "name": "winston-logger-setup",
+  "version": "1.0.0",
+  "description": "This is winston logger setup in best way logging our node js application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "winston",
+    "logging",
+    "logger",
+    "nodejs",
+    "logging"
+  ],
+  "author": "Pradeep Vishwakarma",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "winston-daily-rotate-file": "^4.5.0"
+  }
+}
