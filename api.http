@@ -10,3 +10,5 @@ GET http://localhost:4001/error-log
 Accept: application/json
 
 ###
+GET http://localhost:4001/silly-log
+Accept: application/json

@@ -7,10 +7,19 @@ let transport = new (transports.DailyRotateFile)({
     datePattern: 'YYYY-MM-DD',
     handleExceptions: true,
     zippedArchive: true,
+    maxSize: '20m',
 });
+process.setMaxListeners(0);
 
-function LoggerService(level, requestHeader, functionName, response = '', error = '') {
-    process.setMaxListeners(0);
+/**
+ * @param {string} level
+ * @param {object} requestHeader
+ * @param {string} functionName
+ * @param {object} response
+ * @param {object} error
+ * return {object}
+ */
+function generateLog(level, requestHeader, functionName, response = null, error = null) {
     const loggerBody = {
         id: new Date().getTime(),
         level: level,
@@ -20,20 +29,27 @@ function LoggerService(level, requestHeader, functionName, response = '', error 
         response: response,
         error: error
     }
-
-    let logger = createLogger({
-        format: combine(format.json(), timestamp()),
-        transports: [
-            transport
-        ],
-        exitOnError: false
-    });
-    if (process.env.NODE_ENV !== 'production') {
-        logger.add(new transports.Console({
-            format: format.json()
-        }));
-    }
-    logger.log(level, loggerBody);
+    return loggerBody;
 }
 
-module.exports = LoggerService;
+/**
+ * @param {object} loggerBody
+ * return {object}
+ */
+
+let Logger = createLogger({
+    format: combine(format.json(), timestamp()),
+    level: 'info',
+    transports: [
+        transport
+    ],
+    exitOnError: false
+});
+
+if (process.env.NODE_ENV !== 'production') {
+    Logger.add(new transports.Console({
+        format: format.json()
+    }));
+}
+
+module.exports = {generateLog, Logger};

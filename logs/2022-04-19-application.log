@@ -1,0 +1,3 @@
+{"level":"error","message":{"error":null,"functionName":"info-log","id":1650370115429,"level":"info","metaInfo":{"body":{},"headers":{"accept":"application/json","accept-encoding":"gzip,deflate","connection":"Keep-Alive","host":"localhost:4001","user-agent":"Apache-HttpClient/4.5.13 (Java/11.0.11)"},"query":{}},"response":"This is sample value of message we store in log file.","url":"/info-log"}}
+{"level":"warn","message":"Trace, log4js!"}
+{"level":"info","message":"Debug, log4js!"}
